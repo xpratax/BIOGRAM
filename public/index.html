@@ -1,363 +1,534 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
- <meta name="google-adsense-account" content="ca-pub-6745422921775341">
- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6745422921775341"
- crossorigin="anonymous"></script>
+    <meta name="google-adsense-account" content="ca-pub-6745422921775341">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6745422921775341" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
 
- <link rel="icon" type="image/x-icon" href="favicon.ico">
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>BioGram</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioGram</title>
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,Arial}
-body{background:#020617;color:white}
-a{text-decoration:none;color:#38bdf8}
+    <!-- ESTILO COMPLETO -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Poppins, Arial;
+        }
 
-/* HEADER */
-header{
-  padding:18px 26px;
-  background:#0f172a;
-  border-bottom:1px solid rgba(255,255,255,0.1);
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+        body {
+            background: #020617;
+            color: white;
+        }
+
+        a {
+            text-decoration: none;
+            color: #38bdf8;
+        }
+
+        /* HEADER */
+        header {
+            padding: 18px 26px;
+            background: #0f172a;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .logo {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg,#0ea5a9,#1e40af);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 20px;
+            color: white;
+            box-shadow: 0 0 20px rgba(14,165,233,.4);
+        }
+
+        /* LAYOUT */
+        .container {
+            max-width: 1150px;
+            margin: 22px auto;
+            padding: 0 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 22px;
+        }
+
+        /* CARDS */
+        .card {
+            background: #0f172a;
+            padding: 20px;
+            border-radius: 14px;
+            box-shadow: 0 0 25px rgba(0,0,0,0.35);
+        }
+
+        /* INPUTS */
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.03);
+            color: white;
+            margin-top: 6px;
+        }
+
+        button {
+            padding: 10px 14px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+            background: #0ea5a9;
+            color: white;
+            font-weight: 600;
+        }
+
+        button:hover { opacity: .85 }
+
+        button.ghost {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        /* FEED */
+        .feed {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
+            gap: 18px;
+            margin-top: 14px;
+        }
+
+        .bio-card {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 14px;
+        }
+
+        /* SIDEBAR */
+        .profile-list {
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+            margin-top: 14px;
+        }
+
+        .profile-mini {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #0ea5a9;
+            color: white;
+            font-weight: 800;
+            font-size: 20px;
+        }
+
+        /* MODAL */
+        #modal {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(3px);
+            padding: 20px;
+        }
+
+        #modal .box {
+            background: #1e293b;
+            padding: 20px;
+            width: 100%;
+            max-width: 720px;
+            border-radius: 12px;
+        }
+     /* card golden */
+     .gold {
+    border: 2px solid gold !important;
+    box-shadow: 0 0 15px gold;
 }
-.brand{display:flex;gap:16px;align-items:center}
-.logo{
-  width:48px;height:48px;
-  background:linear-gradient(135deg,#0ea5a9,#1e40af);
-  display:flex;justify-content:center;align-items:center;
-  border-radius:12px;
-  font-weight:800;font-size:20px;
-  color:white;
-  box-shadow:0 0 20px rgba(14,165,233,.4);
+.like-btn {
+    cursor:pointer;
+    font-size:18px;
+}
+.like-btn.liked {
+    color:#38bdf8;
+}
+.report-btn {
+    cursor:pointer;
+    color:#f87171;
+    margin-left:10px;
 }
 
-/* LAYOUT */
-.container{max-width:1150px;margin:22px auto;padding:0 20px}
-.grid{
-  display:grid;
-  grid-template-columns:300px 1fr;
-  gap:22px;
-}
-
-/* CARDS */
-.card{
-  background:#0f172a;
-  padding:20px;
-  border-radius:14px;
-  box-shadow:0 0 25px rgba(0,0,0,0.35);
-}
-
-/* INPUTS */
-input,textarea{
-  width:100%;
-  padding:10px;
-  border-radius:8px;
-  border:1px solid rgba(255,255,255,0.15);
-  background:rgba(255,255,255,0.03);
-  color:white;
-  margin-top:6px;
-}
-
-button{
-  padding:10px 14px;
-  border:none;
-  border-radius:8px;
-  cursor:pointer;
-  transition:0.2s;
-  background:#0ea5a9;
-  color:white;
-  font-weight:600;
-}
-button:hover{opacity:.85}
-button.ghost{
-  background:transparent;
-  border:1px solid rgba(255,255,255,0.2);
-}
-
-/* FEED */
-.feed{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
-  gap:18px;
-  margin-top:14px;
-}
-.bio-card{
-  background:#1e293b;
-  border-radius:12px;
-  padding:14px;
-}
-
-/* SIDEBAR */
-.profile-list{display:flex;flex-direction:column;gap:13px;margin-top:14px}
-.profile-mini{display:flex;gap:12px;align-items:center}
-.avatar{
-  width:52px;height:52px;
-  border-radius:12px;
-  display:flex;justify-content:center;align-items:center;
-  background:#0ea5a9;
-  color:white;
-  font-weight:800;
-  font-size:20px;
-}
-
-/* MODAL */
-#modal{
-  position:fixed;inset:0;
-  display:none;
-  align-items:center;justify-content:center;
-  background:rgba(0,0,0,0.6);backdrop-filter:blur(3px);
-  padding:20px;
-}
-#modal .box{
-  background:#1e293b;
-  padding:20px;
-  width:100%;max-width:720px;
-  border-radius:12px;
-}
-</style>
+     
+    </style>
 </head>
+
 <body>
-
-<header>
-  <div class="brand">
-    <div class="logo">BG</div>
-    <div>
-      <b>BioGram</b><br>
-      <small style="color:#94a3b8">Biografias — extensão não oficial</small>
-    </div>
-  </div>
-
-  <div id="auth-area">
-    <button id="btn-google">Entrar com Google</button>
-    <button class="ghost" id="btn-logout" style="display:none">Sair</button>
-  </div>
-</header>
-
-<div class="container">
-  <div class="grid">
-
-    <aside>
-      <div class="card">
-        <input id="search" placeholder="Pesquisar...">
-
-        <div style="display:flex;gap:10px;margin-top:12px">
-          <button id="btn-filter">Recentes</button>
-          <button class="ghost" id="btn-clear">Limpar</button>
+    <!-- HEADER -->
+    <header>
+        <div class="brand">
+            <div class="logo">BG</div>
+            <div>
+                <b>BioGram</b><br>
+                <small style="color:#94a3b8">Biografias — extensão não oficial</small>
+            </div>
         </div>
 
-        <div id="profile-list" class="profile-list"></div>
-      </div>
-    </aside>
-
-    <main>
-      <div class="card">
-        <h2>Feed de Biografias</h2>
-        Total: <span id="total">0</span>
-      </div>
-
-      <div class="card" style="display:flex;justify-content:space-between;align-items:center">
-        <div id="me-area" style="color:#94a3b8">
-          Faça login para criar ou editar sua biografia
+        <div id="auth-area">
+            <button id="btn-google">Entrar com Google</button>
+            <button class="ghost" id="btn-logout" style="display:none">Sair</button>
         </div>
-        <button id="btn-new" style="display:none">Criar / Editar</button>
-      </div>
+    </header>
 
-      <div id="feed" class="feed"></div>
-    </main>
+    <!-- LAYOUT -->
+    <div class="container">
+        <div class="grid">
+            
+            <!-- SIDEBAR -->
+            <aside>
+                <div class="card">
+                    <input id="search" placeholder="Pesquisar...">
 
-  </div>
-</div>
+                    <div style="display:flex;gap:10px;margin-top:12px">
+                        <button id="btn-filter">Recentes</button>
+                        <button class="ghost" id="btn-clear">Limpar</button>
+                    </div>
 
-<!-- MODAL -->
-<div id="modal">
-  <div class="box">
-    <h3>Biografia</h3>
+                    <div id="profile-list" class="profile-list"></div>
+                </div>
+            </aside>
 
-    <label>Instagram (sem @)</label>
-    <input id="input-handle">
+            <!-- MAIN -->
+            <main>
+                <div class="card">
+                    <h2>Feed de Biografias</h2>
+                    Total: <span id="total">0</span>
+                </div>
 
-    <label style="margin-top:12px">Nome</label>
-    <input id="input-name">
+                <div class="card" style="display:flex;justify-content:space-between;align-items:center">
+                    <div id="me-area" style="color:#94a3b8">
+                        Faça login para criar ou editar sua biografia
+                    </div>
+                    <button id="btn-new" style="display:none">Criar / Editar</button>
+                </div>
 
-    <label style="margin-top:12px">Biografia</label>
-    <textarea id="input-bio" rows="4"></textarea>
+                <div id="feed" class="feed"></div>
+            </main>
 
-    <label style="margin-top:12px">Tags (vírgula)</label>
-    <input id="input-tags">
-
-    <label style="margin-top:12px">Avatar URL</label>
-    <input id="input-avatar">
-
-    <div style="margin-top:16px;display:flex;gap:10px">
-      <button id="save">Salvar</button>
-      <button class="ghost" id="cancel">Cancelar</button>
+        </div>
     </div>
-  </div>
-</div>
 
-<script type="module">
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2"
+    <!-- MODAL -->
+    <div id="modal">
+        <div class="box">
+            <h3>Biografia</h3>
 
-const supabase = createClient(
-  "https://qwdsfzbcauefyvyyqtav.supabase.co",
-  "YOUR_PUBLIC_ANON_KEY_AQUI"
-)
+            <label>Instagram (sem @)</label>
+            <input id="input-handle">
 
-const btnGoogle = document.getElementById("btn-google")
-const btnLogout = document.getElementById("btn-logout")
-const btnNew = document.getElementById("btn-new")
-const meArea = document.getElementById("me-area")
-const modal = document.getElementById("modal")
-const feed = document.getElementById("feed")
-const totalSpan = document.getElementById("total")
-const searchInput = document.getElementById("search")
-const profileList = document.getElementById("profile-list")
+            <label style="margin-top:12px">Nome</label>
+            <input id="input-name">
 
-let currentUser = null
-let profilesCache = []
+            <label style="margin-top:12px">Biografia</label>
+            <textarea id="input-bio" rows="4"></textarea>
 
-function initialsFrom(p){
-  return p.name ? p.name[0].toUpperCase() : p.handle[0].toUpperCase()
-}
+            <label style="margin-top:12px">Tags (vírgula)</label>
+            <input id="input-tags">
 
-btnGoogle.onclick = async () => {
-  await supabase.auth.signInWithOAuth({ provider:"google" })
-}
+            <label style="margin-top:12px">Avatar URL</label>
+            <input id="input-avatar">
 
-btnLogout.onclick = async () => {
-  await supabase.auth.signOut()
-  location.reload()
-}
+            <div style="margin-top:16px;display:flex;gap:10px">
+                <button id="save">Salvar</button>
+                <button class="ghost" id="cancel">Cancelar</button>
+            </div>
+        </div>
+    </div>
 
-const { data:{ session } } = await supabase.auth.getSession()
-if(session?.user){
-  currentUser = session.user
-  onLogin()
-}
+    <!-- SCRIPT COMPLETO -->
+    <script type="module">
 
-supabase.auth.onAuthStateChange((e, s)=>{
-  if(s?.user){
-    currentUser = s.user
-    onLogin()
-  }
-})
+        import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm"
 
-async function onLogin(){
-  btnGoogle.style.display = "none"
-  btnLogout.style.display = "inline-block"
-  btnNew.style.display = "inline-block"
-  meArea.innerHTML = `Logado como ${currentUser.email}`
+        const supabase = createClient(
+            "https://qwdsfzbcauefyvyyqtav.supabase.co",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF3ZHNmemJjYXVlZnl2eXlxdGF2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM0OTM0NTIsImV4cCI6MjA3OTA2OTQ1Mn0.w2JYwMW_2L9wXZZ7r2D9hE0H6JYcSAFpUwpHv5PXWXE"
+        )
 
-  await ensureUserRow()
-  loadProfiles()
-}
+        const btnGoogle = document.getElementById("btn-google")
+        const btnLogout = document.getElementById("btn-logout")
+        const btnNew = document.getElementById("btn-new")
+        const meArea = document.getElementById("me-area")
+        const modal = document.getElementById("modal")
+        const feed = document.getElementById("feed")
+        const totalSpan = document.getElementById("total")
+        const searchInput = document.getElementById("search")
+        const profileList = document.getElementById("profile-list")
 
-async function ensureUserRow(){
-  const { data } = await supabase
-    .from("users")
-    .select("*")
-    .eq("user_id", currentUser.id)
-    .single()
-    .catch(()=>({ data: null }))
+        let currentUser = null
+        let profilesCache = []
 
-  if(!data){
-    await supabase.from("users").insert({
-      user_id: currentUser.id,
-      email: currentUser.email
+        function initialsFrom(p) {
+            return p.name ? p.name[0].toUpperCase() : p.handle[0].toUpperCase()
+        }
+
+        btnGoogle.onclick = async () => {
+            await supabase.auth.signInWithOAuth({ provider: "google" })
+        }
+
+        btnLogout.onclick = async () => {
+            await supabase.auth.signOut()
+            location.reload()
+        }
+
+        const { data: { session } } = await supabase.auth.getSession()
+
+        if (session?.user) {
+            currentUser = session.user
+            onLogin()
+        }
+
+        supabase.auth.onAuthStateChange((e, s) => {
+            if (s?.user) {
+                currentUser = s.user
+                onLogin()
+            }
+        })
+
+        async function onLogin() {
+            btnGoogle.style.display = "none"
+            btnLogout.style.display = "inline-block"
+            btnNew.style.display = "inline-block"
+
+            meArea.innerHTML = `Logado como ${currentUser.email}`
+
+            await ensureUserRow()
+            loadProfiles()
+        }
+
+        async function ensureUserRow() {
+            const { data } = await supabase
+                .from("users")
+                .select("*")
+                .eq("supabase_id", currentUser.id)
+                .maybeSingle()
+
+            if (!data) {
+                await supabase.from("users").insert({
+                    supabase_id: currentUser.id,
+                    email: currentUser.email
+                })
+            }
+        }
+
+        btnNew.onclick = () => modal.style.display = "flex"
+        document.getElementById("cancel").onclick = () => modal.style.display = "none"
+        document.getElementById("save").onclick = saveProfile
+
+        async function saveProfile() {
+            const handle = document.getElementById("input-handle").value.trim()
+            const name = document.getElementById("input-name").value.trim()
+            const bio = document.getElementById("input-bio").value.trim()
+            const tags = document.getElementById("input-tags").value.split(",").map(s => s.trim())
+            const avatar = document.getElementById("input-avatar").value.trim()
+
+            await supabase.from("profiles").upsert({
+                user_id: currentUser.id,
+                handle,
+                name,
+                bio,
+                tags,
+                avatar,
+                instagram_link: `https://instagram.com/${handle}`,
+                updated_at: new Date().toISOString()
+            })
+
+            modal.style.display = "none"
+            loadProfiles()
+        }
+
+        searchInput.oninput = () => loadProfiles()
+
+        async function loadProfiles() {
+            const { data } = await supabase
+                .from("profiles")
+                .select("*")
+                .order("updated_at", { ascending: false })
+
+            profilesCache = data || []
+            renderFeed(profilesCache)
+            renderSidebar(profilesCache)
+        }
+
+async function renderFeed(list){
+    feed.innerHTML = ""
+
+    // pegar todas as curtidas do usuário atual
+    let myLikes = []
+    if(currentUser){
+        const { data:liked } = await supabase
+            .from("likes")
+            .select("profile_id")
+            .eq("user_id", currentUser.id)
+
+        myLikes = liked?.map(l => l.profile_id) || []
+    }
+
+    list.forEach(p=>{
+        const el = document.createElement("div")
+        el.className = "bio-card"
+
+        // borda gold
+        if(p.tags && p.tags.includes("gold")){
+            el.classList.add("gold")
+        }
+
+        const isLiked = myLikes.includes(p.user_id)
+
+        el.innerHTML = `
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+                <div class="avatar" style="width:55px;height:55px;overflow:hidden">
+                    ${p.avatar ?
+                        `<img src="${p.avatar}" style="width:100%;height:100%;object-fit:cover;border-radius:12px">`
+                        :
+                        `${initialsFrom(p)}`
+                    }
+                </div>
+
+                <div>
+                    <h3>${p.name || p.handle}</h3>
+                    <small>@${p.handle}</small>
+                </div>
+            </div>
+
+            <p style="margin:8px 0">${p.bio || ""}</p>
+
+            <p><a href="${p.instagram_link}" target="_blank">Abrir Instagram</a></p>
+
+            <div style="margin-top:10px;display:flex;align-items:center">
+                <span class="like-btn ${isLiked ? "liked" : ""}" data-id="${p.user_id}">
+                    ❤️
+                </span>
+
+                <span class="report-btn" data-id="${p.user_id}">
+                    Reportar
+                </span>
+            </div>
+        `
+
+        feed.appendChild(el)
     })
-  }
+
+    totalSpan.textContent = list.length
+
+    addLikeListeners()
+    addReportListeners()
+}
+function addLikeListeners(){
+    document.querySelectorAll(".like-btn").forEach(btn=>{
+        btn.onclick = async () => {
+            if(!currentUser){
+                alert("Faça login para curtir!")
+                return
+            }
+
+            const profId = btn.dataset.id
+
+            if(btn.classList.contains("liked")){
+                await supabase.from("likes")
+                    .delete()
+                    .eq("profile_id", profId)
+                    .eq("user_id", currentUser.id)
+
+                btn.classList.remove("liked")
+            } else {
+                await supabase.from("likes")
+                    .insert({
+                        profile_id: profId,
+                        user_id: currentUser.id
+                    })
+
+                btn.classList.add("liked")
+            }
+        }
+    })
 }
 
-btnNew.onclick = ()=> modal.style.display = "flex"
+/*REPORT!*/
+     function addReportListeners(){
+    document.querySelectorAll(".report-btn").forEach(btn=>{
+        btn.onclick = async () => {
+            if(!currentUser){
+                alert("Faça login para reportar.")
+                return
+            }
 
-document.getElementById("cancel").onclick = ()=> modal.style.display = "none"
+            const profId = btn.dataset.id
+            const motivo = prompt("Descreva o motivo da denúncia:")
 
-document.getElementById("save").onclick = saveProfile
+            if(!motivo) return
 
-async function saveProfile(){
-  const handle = document.getElementById("input-handle").value.trim()
-  const name = document.getElementById("input-name").value.trim()
-  const bio = document.getElementById("input-bio").value.trim()
-  const tags = document.getElementById("input-tags").value.split(",").map(s=>s.trim())
-  const avatar = document.getElementById("input-avatar").value.trim()
+            await supabase.from("reports")
+                .insert({
+                    profile_id: profId,
+                    user_id: currentUser.id,
+                    reason: motivo
+                })
 
-  await supabase.from("profiles").upsert({
-    user_id: currentUser.id,
-    handle,
-    name,
-    bio,
-    tags,
-    avatar,
-    instagram_link: `https://instagram.com/${handle}`,
-    updated_at: new Date().toISOString()
-  })
-
-  modal.style.display = "none"
-  loadProfiles()
+            alert("Denúncia enviada para análise.")
+        }
+    })
 }
 
-searchInput.oninput = ()=> {
-  const v = searchInput.value.toLowerCase()
-  const filtered = profilesCache.filter(p =>
-    p.name?.toLowerCase().includes(v) ||
-    p.handle?.toLowerCase().includes(v) ||
-    p.bio?.toLowerCase().includes(v)
-  )
-  renderFeed(filtered)
-  renderSidebar(filtered)
-}
 
-async function loadProfiles(){
-  const { data } = await supabase
-    .from("profiles")
-    .select("*")
-    .order("updated_at",{ascending:false})
+        function renderSidebar(list) {
+            profileList.innerHTML = ""
 
-  profilesCache = data || []
+            list.forEach(p => {
+                const div = document.createElement("div")
+                div.className = "profile-mini"
 
-  renderFeed(profilesCache)
-  renderSidebar(profilesCache)
-}
+                div.innerHTML = `
+                    <div class="avatar">${initialsFrom(p)}</div>
+                    <div>
+                        <b>${p.name || p.handle}</b><br>
+                        <small>@${p.handle}</small>
+                    </div>
+                `
 
-function renderFeed(list){
-  feed.innerHTML = ""
-  list.forEach(p=>{
-    const el = document.createElement("div")
-    el.className = "bio-card"
+                profileList.appendChild(div)
+            })
+        }
 
-    el.innerHTML = `
-      <h3>${p.name || p.handle}</h3>
-      <p style="margin:8px 0">${p.bio || ""}</p>
-      <p><a href="${p.instagram_link}" target="_blank">Abrir Instagram</a></p>
-    `
-    feed.appendChild(el)
-  })
+        loadProfiles()
 
-  totalSpan.textContent = list.length
-}
-
-function renderSidebar(list){
-  profileList.innerHTML = ""
-  list.forEach(p=>{
-    const div = document.createElement("div")
-    div.className = "profile-mini"
-    div.innerHTML = `
-      <div class="avatar">${initialsFrom(p)}</div>
-      <div>
-        <b>${p.name || p.handle}</b><br>
-        <small>@${p.handle}</small>
-      </div>
-    `
-    profileList.appendChild(div)
-  })
-}
-
-loadProfiles()
-</script>
-
+    </script>
 </body>
 </html>
